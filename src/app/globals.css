@@ -1,0 +1,208 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-inter-tight), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Colors */
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-dark-card: var(--bg-dark-card);
+  --color-text-dark-primary: var(--text-dark-primary);
+  --color-text-dark-secondary: var(--text-dark-secondary);
+  --color-bg-light: var(--bg-light);
+  --color-bg-light-card: var(--bg-light-card);
+  --color-text-light-primary: var(--text-light-primary);
+  --color-text-light-secondary: var(--text-light-secondary);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-orange: var(--accent-orange);
+  --color-success-green: var(--success-green);
+  --color-warning-yellow: var(--warning-yellow);
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+
+  /* Radius */
+  --radius-card: var(--radius-card);
+  --radius-button: var(--radius-button);
+}
+
+:root {
+  /* Colors */
+  --bg-dark: #0a0a0a;
+  --bg-dark-card: #111111;
+  --text-dark-primary: #ffffff;
+  --text-dark-secondary: #a3a3a3;
+
+  --bg-light: #f0eee9;
+  --bg-light-card: #ffffff;
+  --text-light-primary: #1a1a1a;
+  --text-light-secondary: #6b7280;
+
+  --accent-yellow: #38bdf8;
+  --accent-orange: #0052e0;
+  --success-green: #16a34a;
+  --warning-yellow: #eab308;
+
+  --border-light: #e5e2dc;
+  --border-dark: #262626;
+
+  /* Radius */
+  --radius-card: 1.25rem;
+  --radius-button: 0.75rem;
+  --radius-pill: 9999px;
+
+  /* shadcn-ui mappings (light fallback) */
+  --background: #f0eee9;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #ffffff;
+  --secondary: #e5e2dc;
+  --secondary-foreground: #1a1a1a;
+  --muted: #e5e2dc;
+  --muted-foreground: #6b7280;
+  --accent: #38bdf8;
+  --accent-foreground: #1a1a1a;
+  --border: #e5e2dc;
+  --input: #e5e2dc;
+  --ring: #0052e0;
+  --radius: 0.75rem;
+}
+
+/* Animations and Utilities */
+@layer utilities {
+  /* Dark Grid background */
+  .bg-grid-dark {
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Light Grid background */
+  .bg-grid-light {
+    background-image: 
+      linear-gradient(to right, rgba(26, 26, 26, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(26, 26, 26, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-light-primary);
+  }
+}
+
+/* Twinkle effect for starfield */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.85; }
+}
+
+.animate-twinkle {
+  animation: twinkle var(--twinkle-duration, 3s) infinite ease-in-out;
+}
+
+/* Shimmer effect for skeleton loader */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.15) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+.animate-shimmer-light::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.03) 20%,
+    rgba(0, 0, 0, 0.08) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+/* Radar pulse animation */
+@keyframes radar-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+
+.animate-radar-blip {
+  position: relative;
+}
+
+.animate-radar-blip::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-orange);
+  animation: radar-pulse 2s infinite ease-out;
+}
+
+/* Conic gradient borders */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Watermark slow drift */
+@keyframes watermark-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-2.5%); }
+}
+
+.animate-watermark-drift {
+  animation: watermark-drift 18s ease-in-out infinite;
+}
