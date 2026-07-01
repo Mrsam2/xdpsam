@@ -12,6 +12,7 @@ import {
 } from 'framer-motion'
 
 import {
+  LucideIcon,
   Bot,
   Code,
   Smartphone,
@@ -29,7 +30,7 @@ import {
 interface CardData {
   title: string
   image: string
-  icon: React.ElementType
+  icon: LucideIcon
   label?: string
 }
 
