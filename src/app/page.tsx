@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "@/components/Hero";
 import TrustedLogos from "@/components/TrustedLogos";
 import BentoGrid from "@/components/BentoGrid";
-import Projects from "@/components/Projects";
 import AppleCardsCarouselDemo from "@/components/apple-cards-carousel-demo";
 import Testimonials from "@/components/Testimonials";
 import StatsTeam from "@/components/StatsTeam";
@@ -23,9 +22,6 @@ export default function Home() {
 
         {/* Section 2 B: Asymmetric Bento Grid */}
         <BentoGrid />
-
-        {/* Section 3: Projects Masonry Showcase */}
-        <Projects />
 
         {/* Section 3.5: Apple Cards Carousel Showcase */}
         <AppleCardsCarouselDemo />
